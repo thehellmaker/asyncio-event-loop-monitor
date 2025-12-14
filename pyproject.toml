@@ -1,0 +1,87 @@
+[project]
+name = "asyncio-event-loop-monitor"
+version = "0.1.0"
+description = "Detect and monitor synchronous blocking calls in Python asyncio event loops"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Akash Ashok", email = "akash.ashok@gmail.com" }
+]
+maintainers = [
+    { name = "Akash Ashok", email = "akash.ashok@gmail.com" }
+]
+keywords = [
+    "asyncio",
+    "event-loop",
+    "monitoring",
+    "profiling",
+    "blocking",
+    "async",
+    "performance",
+    "debugging"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Monitoring",
+    "Framework :: AsyncIO",
+    "Typing :: Typed",
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.8.0",
+    "mypy>=1.13.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/thehellmaker/asyncio-event-loop-monitor"
+Documentation = "https://github.com/thehellmaker/asyncio-event-loop-monitor#readme"
+Repository = "https://github.com/thehellmaker/asyncio-event-loop-monitor"
+Issues = "https://github.com/thehellmaker/asyncio-event-loop-monitor/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/asyncio_event_loop_monitor"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
